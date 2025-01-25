@@ -12,6 +12,11 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    font-family: "Open Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:"width" 100
 }
 
 header {
@@ -43,22 +48,38 @@ header {
 .navigation  ul {
     display: flex;
     list-style: none;
-}
-
-.navigation  ul li {
-    margin-left: 50px;
+    gap: 25px;
 }
 
 .navigation  ul li a {
     text-decoration: none;
     color: #000;
     font-size: 20px;
+    font-weight: 450;
+    position: relative;
+
 }
 
 .navigation  ul li a:hover {
     color: #fff;
-    background-color: #ff9595;
 }
+
+.navigation  ul li a::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 3px;
+    background-color: #f87171;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.navigation  ul li a:hover::after {
+    width: 100%;
+}
+
 
 /* nav */
 .login-parent {
@@ -72,35 +93,21 @@ header {
     align-items: center;
 }
 
-.login-content {
+.login-content,.signup-content {
     width: 400px;
-    height: 450px;
     background-color: rgba(255, 165, 165 ,0.3);
     text-align: center;
     padding: 20px;
     border-radius: 10px;
     backdrop-filter: blur(10px);
     margin-top: -160px;
-    border: 1px solid #fff;
-    box-shadow: 5px 5px 20px #000;
-}
-
-.signup-content {
-    width: 400px;
-    height: 500px;
-    background-color: rgba(255, 165, 165 ,0.3);
-    text-align: center;
-    padding: 20px;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    margin-top: -160px;
-    border: 1px solid #fff;
+    /* border: 1px solid #fff; */
     box-shadow: 5px 5px 20px #000;
 }
 
 .login-title h1 {
     font-size: 50px;
-    background: linear-gradient(to right, #ffa5a5, #e59494);
+    background: linear-gradient(to right, #f88b8b, #f93232);
     background-clip: text;
     color: transparent;
 }
@@ -116,11 +123,33 @@ header {
 
 .login-input input {
     width: 80%;
-    height: 50px;
-    border: 0.5px solid #000;
-    border-radius: 10px;
+    height: 40px;
+    border: none;
+    border-bottom: 1px solid #000;
+    /* border-radius: 10px; */
     padding: 10px;
     font-size: 20px;
+    background: none;
+}
+
+.login-input input::placeholder {
+    color: #000;
+}
+
+.login-input input:hover {
+    border-color: #f87171;
+}
+
+.login-input input:hover ~ .login-input-icon,.login-input input:hover::placeholder {
+    color: #f87171;
+}
+
+.login-input input:focus::placeholder, .login-input input:focus ~ .login-input-icon {
+    color: #f87171;
+}
+
+.login-input input:focus {
+    border-color: #f87171;
 }
 
 /* .login-input input:required {
@@ -140,41 +169,101 @@ header {
 
 .login-input-icon {
     position: absolute;
-    top: 50%;
-    left: 10px;
+    top: 55%;
+    right: 45px;
     transform: translateY(-50%);
 }
 
+/* //// login-check //// */
 .login-check {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
 } 
 
-.login-check input {
-    width: 15px;
-    height: 15px;
+.login-check input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
     cursor: pointer;
-    border: 0.5px solid #000;
-    border-radius: 10px;
+    border-radius: 4px;
+    position: relative;
+    vertical-align: middle;
+    border: 2px solid #666666; 
+    appearance: none;
 } 
 
 .login-check label {
-    margin-left: 10px;
+    margin-left: 8px;
+    color: #666666;
 } 
 
+.login-check input[type="checkbox"]:checked {
+    background-color: #f87171; 
+    border: 2px solid #f87171;
+}
+
+.login-check input[type="checkbox"]:checked::after {
+    content: "✔";
+    font-size: 12px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-check label {
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+/* //// login-btn //// */
 .login-btn button {
     width: 80%;
-    height: 50px;
-    border: 0.5px solid #000;
+    height: 45px;
+    border: none;
     border-radius: 10px;
-    padding: 10px;
-    font-size: 20px; 
-    margin-bottom: 20px;   
+    font-size: 15px; 
+    margin-bottom: 20px;  
+    background-color: #f78686; 
+    text-align: center;
 }
 
 .login-btn button:hover {
-    background-color: #ffa5a5;
-    color: #fff;        
+    background-color: #f78686a5;
+    transform: scale(1.05);
+    transition: all 0.3s ease; 
+    color: #fff;     
 }       
+
+.up-btn {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 30px;
+}
+
+.forget {
+    text-decoration: none;
+ }
+
+ .forget a,.sign-up a, .login-check label a {
+    color: #007BFF; 
+    text-decoration: none;
+}
+
+.forget a:hover ,.sign-up a:hover, .login-check label a:hover {
+    text-decoration: underline;
+}
+
+.sign-up {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.sign-up p {
+    color: #666666 ;
+}
